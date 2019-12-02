@@ -1,0 +1,11 @@
+.DS_Store
+resources/
+resources.tar
+*.pyc
+*.params
+__pycache__/
+venv/
+.vscode/
+.pytest_cache/
+screen*
+.idea
