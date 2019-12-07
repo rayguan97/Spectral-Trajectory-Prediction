@@ -45,6 +45,21 @@ Python version: 3.7
 
 Note: During evaluation of the trained_models, the best results may be different from reported error due to different batch normalization applied to the network. To obtain the same number, we may have to mannually change the network.
 
+### Trajectory Prediction Methods
+* [**TraPHic: Trajectory Prediction in Dense and Heterogeneous Traffic Using Weighted Interactions,CVPR'19**](https://gamma.umd.edu/researchdirections/autonomousdriving/traphic/)<br>
+Rohan Chandra, Uttaran Bhattacharya, Aniket Bera, Dinesh Manocha.
+* [**Convolutional Social Pooling for Vehicle Trajectory Prediction, CVPRW'18**](https://arxiv.org/pdf/1805.06771.pdf)<br>
+Nachiket Deo and Mohan M. Trivedi.
+* [**Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks, CVPR'18**](https://arxiv.org/pdf/1803.10892.pdf)<br>
+Agrim Gupta, Justin Johnson, Fei-Fei Li, Silvio Savarese, Alexandre Alahi.
+* [**GRIP: Graph-based Interaction-aware Trajectory Prediction, ITSC,19**](https://arxiv.org/pdf/1907.07792.pdf)<br>
+Xin Li, Xiaowen Ying, Mooi Choo Chuah
+
+### Datasets
+* [**Argoverse**](https://www.argoverse.org/data.html)
+* [**Apolloscape**](apolloscape.auto/trajectory.html)
+* [**Lyft Level 5**](https://level5.lyft.com/dataset/)
+
 ### Data preparation steps
 Important steps if you plan to prepare the data from the raw data
 
