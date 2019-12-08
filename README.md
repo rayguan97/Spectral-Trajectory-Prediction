@@ -56,7 +56,10 @@ Python version: 3.7
 
 Note: During evaluation of the trained_models, the best results may be different from reported error due to different batch normalization applied to the network. To obtain the same number, we may have to mannually change the network.
 
-### Trajectory Prediction Methods
+### List of Trajectory Prediction Methods Implemented
+
+Please cite the methods below if you use them.
+
 * [**TraPHic: Trajectory Prediction in Dense and Heterogeneous Traffic Using Weighted Interactions**, CVPR'19](https://gamma.umd.edu/researchdirections/autonomousdriving/traphic/)<br>
 Rohan Chandra, Uttaran Bhattacharya, Aniket Bera, Dinesh Manocha.
 * [**Convolutional Social Pooling for Vehicle Trajectory Prediction**, CVPRW'18](https://arxiv.org/pdf/1805.06771.pdf)<br>
