@@ -18,7 +18,7 @@ Please cite our work if you found it useful.
 <img src="figures/results.gif" width="400">
 </p>
 
-Since this is a research codebase and maintained by students, do let us know of any bugs you may encounter and we will do our best to resolve them :) 
+Since this is a research codebase and maintained by students, do let us know of any bugs you may encounter and we will do our best to resolve them :) A list of active bugs with solutions is regularly maintained and compiled [**here**](https://github.com/rohanchandra30/Spectral-Trajectory-Prediction/wiki/Known-bugs).
 
 ## Instruction
 
