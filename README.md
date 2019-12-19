@@ -68,7 +68,9 @@ Nachiket Deo and Mohan M. Trivedi.
 * [**Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks**, CVPR'18](https://arxiv.org/pdf/1803.10892.pdf)<br>
 Agrim Gupta, Justin Johnson, Fei-Fei Li, Silvio Savarese, Alexandre Alahi.
 * [**GRIP: Graph-based Interaction-aware Trajectory Prediction**, ITSC'19](https://arxiv.org/pdf/1907.07792.pdf)<br>
-Xin Li, Xiaowen Ying, Mooi Choo Chuah
+Xin Li, Xiaowen Ying, Mooi Choo Chuah 
+
+As the official implementation of the GRIP method is not available, the code provided here is our own effort to replicate the GRIP method to the best of our ability and does not necessarily convey the original implementation of the authors. Please contact the authors directly for the original implementation. 
 
 ### Datasets
 * [**Argoverse**](https://www.argoverse.org/data.html)
