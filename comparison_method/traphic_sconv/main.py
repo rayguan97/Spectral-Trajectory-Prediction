@@ -104,7 +104,6 @@ def argo_to_formatted(input_dir, files, output_dir, dtype):
 
 	return txtlst
 
-# Here we pass in a 
 def create_data(input_dir, file_names, output_dir, dtype, threadid):
 	
 	name_lst = []

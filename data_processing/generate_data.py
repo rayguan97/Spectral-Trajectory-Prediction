@@ -1,6 +1,6 @@
 import multiprocessing
 import subprocess
-from main import argo_to_formatted, create_data
+from format_argo import argo_to_formatted, create_data
 import argparse
 import numpy as np
 import os
@@ -145,22 +145,22 @@ if __name__ == '__main__':
 	# cmds = []
 
 
-	# if dtype == 'train':
-	# 	print('preprocessing train set...')
-	# 	input_dir = RAW_DATA + '/train/data/'
-	# 	output_dir = RAW_DATA + '/train/formatted/'
+	if dtype == 'train':
+		print('preprocessing train set...')
+		input_dir = RAW_DATA + '/train/data/'
+		output_dir = RAW_DATA + '/train/formatted/'
 
-	# elif dtype == 'val':
-	# 	print('preprocessing val set...')
-	# 	input_dir = RAW_DATA + '/val/data/'
-	# 	output_dir = RAW_DATA + '/val/formatted/'
-	# elif dtype == 'test':
-	# 	print('preprocessing test set...')
-	# 	input_dir = RAW_DATA + '/test_obs/data/'
-	# 	output_dir = RAW_DATA + '/test_obs/formatted/'
-	# else:
-	# 	print('illegal set. Exiting...')
-	# 	exit(1)
+	elif dtype == 'val':
+		print('preprocessing val set...')
+		input_dir = RAW_DATA + '/val/data/'
+		output_dir = RAW_DATA + '/val/formatted/'
+	elif dtype == 'test':
+		print('preprocessing test set...')
+		input_dir = RAW_DATA + '/test_obs/data/'
+		output_dir = RAW_DATA + '/test_obs/formatted/'
+	else:
+		print('illegal set. Exiting...')
+		exit(1)
 
 	single('./resources/raw_data/APOL', './resources/data/APOL', args.set)
 	single('./resources/raw_data/LYFT', './resources/data/LYFT', args.set)
@@ -185,23 +185,19 @@ if __name__ == '__main__':
 
 
 
+	##### --- generate txt for sgan model --- #####
 
+	generate_sgan(DATA_DIR, dtype)
 
 	##### --- generate npy for traphic model --- #####
 
-	# merge here into one file
-	# generate_sgan(DATA_DIR, dtype)
+	sz = 0
+	ddir = os.path.join(DATA_DIR, dtype)
+	files = [f for f in os.listdir(ddir) if '.npy' in f]
+	for k in range(len(files)):
+		print("Counting #{} file in {}...".format(k, dtype))
+		dt = np.load(os.path.join(ddir, files[k]), allow_pickle=True)
+		sz += len(dt[0])
 
-	##### --- generate txt for sgan model --- #####
-
-	# merge here into one file
-	# sz = 0
-	# ddir = os.path.join(DATA_DIR, dtype)
-	# files = [f for f in os.listdir(ddir) if '.npy' in f]
-	# for k in range(len(files)):
-	# 	print("Counting #{} file in {}...".format(k, dtype))
-	# 	dt = np.load(os.path.join(ddir, files[k]), allow_pickle=True)
-	# 	sz += len(dt[0])
-
-	# generate_data(DATA_DIR, dtype, (sz, 47))
+	generate_data(DATA_DIR, dtype, (sz, 47))
 
