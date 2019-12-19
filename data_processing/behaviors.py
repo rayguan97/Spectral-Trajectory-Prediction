@@ -101,60 +101,26 @@ def generate_adjacency(dir, DATA_SET):
 
     if DATA_SET == 'LYFT':
 
-        # for file in sorted(os.listdir(folder_path)):
-        #     if count <= 126:
-        #         train_filenames.append(file)
-        #     elif count <=144:
-        #         val_filenames.append(file)
-        #     else:
-        #         break
-        #     count+=1
+		file = 'trainSet0.txt'  # for val, file = 'valSet0.txt'
+		data = np.loadtxt(folder_path + file)
+		dataset_IDs = np.unique(data[:,4]).astype(int)
+		total_num_of_agents= 270
 
-        # scene_index = 1
+		for d_id in dataset_IDs:
+		    one_dataset = data[np.where(data[:,4]==d_id)]  #data_id
+		    obj_IDs = np.unique(one_dataset[:,1]).astype(int)
+		    d = dict([(y,x+1) for x,y in enumerate(sorted(set(obj_IDs)))])
 
-        # for file in train_filenames:
+		    for each_obj_ID in obj_IDs:
+		        # print(each_obj_ID)
+		        new_id = d[each_obj_ID]
+		        one_obj_traj = one_dataset[np.where(one_dataset[:,1]==each_obj_ID)]
+		        new_array = np.ones([one_obj_traj.shape[0],]) * new_id
+		        one_obj_traj[:,1] = new_array
+		        one_dataset[np.where(one_dataset[:,1]==each_obj_ID)]  = one_obj_traj
 
-        #     scene_array = np.load(folder_path + file)
-        #     frame_ID_adj_mat_list = create_adjacent_matrix(scene_array, scene_index,total_num_of_agents)
-
-        #     frame_ID_adj_mat_list_train_scenes.append(frame_ID_adj_mat_list)
-
-        #     print('scene_ID in train:', scene_index)
-
-        #     scene_index +=1
-
-        # for file1 in val_filenames:
-
-        #     val_scene_array = np.load(folder_path + file1)
-        #     frame_ID_adj_mat_list = create_adjacent_matrix(val_scene_array, scene_index, total_num_of_agents)
-
-        #     frame_ID_adj_mat_list_val_scenes.append(frame_ID_adj_mat_list)
-
-        #     print('scene_ID in val:', scene_index)
-
-        #     scene_index +=1
-
-
-	    file = 'trainSet0.txt'  # for val, file = 'valSet0.txt'
-	    data = np.loadtxt(folder_path + file)
-	    dataset_IDs = np.unique(data[:,4]).astype(int)
-	    total_num_of_agents= 270
-
-	    for d_id in dataset_IDs:
-	        one_dataset = data[np.where(data[:,4]==d_id)]  #data_id
-	        obj_IDs = np.unique(one_dataset[:,1]).astype(int)
-	        d = dict([(y,x+1) for x,y in enumerate(sorted(set(obj_IDs)))])
-
-	        for each_obj_ID in obj_IDs:
-	            # print(each_obj_ID)
-	            new_id = d[each_obj_ID]
-	            one_obj_traj = one_dataset[np.where(one_dataset[:,1]==each_obj_ID)]
-	            new_array = np.ones([one_obj_traj.shape[0],]) * new_id
-	            one_obj_traj[:,1] = new_array
-	            one_dataset[np.where(one_dataset[:,1]==each_obj_ID)]  = one_obj_traj
-
-	        frame_ID_adj_mat_list = create_adjacent_matrix(one_dataset, d_id,total_num_of_agents)
-	        frame_ID_adj_mat_list_train_scenes.append(frame_ID_adj_mat_list)
+		    frame_ID_adj_mat_list = create_adjacent_matrix(one_dataset, d_id,total_num_of_agents)
+		    frame_ID_adj_mat_list_train_scenes.append(frame_ID_adj_mat_list)
 
 
 
