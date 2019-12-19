@@ -162,26 +162,27 @@ if __name__ == '__main__':
 		print('illegal set. Exiting...')
 		exit(1)
 
-	single('./resources/raw_data/APOL', './resources/data/APOL', args.set)
-	single('./resources/raw_data/LYFT', './resources/data/LYFT', args.set)
+	# single('./resources/raw_data/APOL', './resources/data/APOL', args.set)
+	# single('./resources/raw_data/LYFT', './resources/data/LYFT', args.set)
 
+	files = 
 
 	##### --- generate several npy files --- #####
-	# bags = np.array_split(files, THREAD)
+	bags = np.array_split(files, THREAD)
 
 
-	# pool = multiprocessing.Pool(processes = THREAD)
+	pool = multiprocessing.Pool(processes = THREAD)
 
-	# cmds = []
+	cmds = []
 
-	# for i in range(THREAD):
-	# 	cmds.append((input_dir, bags[i], output_dir, DATA_DIR, dtype, i))
+	for i in range(THREAD):
+		cmds.append((input_dir, bags[i], output_dir, DATA_DIR, dtype, i))
 
-	# pool.starmap(multi, cmds)
+	pool.starmap(multi, cmds)
 
-	# sz = 0
-	# for i in range(THREAD):
-	# 	sz += run_merge(output_dir, DATA_DIR, dtype, i)
+	sz = 0
+	for i in range(THREAD):
+		sz += run_merge(output_dir, DATA_DIR, dtype, i)
 
 
 
@@ -194,10 +195,10 @@ if __name__ == '__main__':
 	sz = 0
 	ddir = os.path.join(DATA_DIR, dtype)
 	files = [f for f in os.listdir(ddir) if '.npy' in f]
-	for k in range(len(files)):
-		print("Counting #{} file in {}...".format(k, dtype))
-		dt = np.load(os.path.join(ddir, files[k]), allow_pickle=True)
-		sz += len(dt[0])
+	# for k in range(len(files)):
+	# 	print("Counting #{} file in {}...".format(k, dtype))
+	# 	dt = np.load(os.path.join(ddir, files[k]), allow_pickle=True)
+	# 	sz += len(dt[0])
 
 	generate_data(DATA_DIR, dtype, (sz, 47))
 

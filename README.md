@@ -75,13 +75,20 @@ Xin Li, Xiaowen Ying, Mooi Choo Chuah
 * [**Apolloscape**](apolloscape.auto/trajectory.html)
 * [**Lyft Level 5**](https://level5.lyft.com/dataset/)
 
+
+### Resources folder structure
+* data -- input and output of stream 1 & 2 (This is directly avaiable in resources folder)
+* raw_data -- location of the raw data (put the downloaded dataset in this folder to process)
+* trained_model -- some saved models
+
+
 ### Data preparation steps
 Important steps if you plan to prepare the data from the raw data
 
 #### Formatting the dataset after downloading from the official website
 * Run `data_processing/format_apolloscape.py` to format the downloaded apolloscape data into our desired representation
 * Run `data_processing/format_lyft.py` to format the downloaded lyft data into our desired representation
-* Use functions in `data_processing/generate_data.py` to format the downloaded Argoverse trajectory data into our desired representation
+* Run `data_processing/generate_data.py` to format the downloaded Argoverse trajectory data into our desired representation
 
 #### For preparing the formatted data into the data structures which our model requires
 * Use `data_processing/data_stream.py` to generate input data for stream1 and stream2. 

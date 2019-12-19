@@ -1,5 +1,6 @@
 import os
 import numpy as np
+from collections import defaultdict
 
 
 def argo_to_formatted(input_dir, files, output_dir, dtype):
@@ -52,9 +53,65 @@ def create_data(input_dir, file_names, output_dir, dtype, threadid):
 	merge(name_lst, output_dir, dtype, threadid)
 
 
+def merge(file_names, output_dir, dtype, threadid):
 
-input_dir = RAW_DATA + './resources/raw_data/ARGO/train/data/'
-output_dir = RAW_DATA + './resources/raw_data/ARGO/train/formatted/'
+    output_dir = output_dir + '/{}'
+    traj = np.array([])
+
+    track = defaultdict(dict)
+
+    i = 0
+    sz = len(file_names)
+    for f in file_names:
+        print("Start merging {}/{} in {} in thread {}...".format(i, sz, dtype, threadid))
+        i += 1
+        # print("Reading dataset {}...".format(d))
+        npy_path = f
+        # print(npy_path)
+        data = np.load(npy_path, allow_pickle=True)
+
+        # constructing train, val and testset for trajectory
+        data0 = data[0]
+        traj_id = np.unique(data0[:,1])
+        d = int(data0[0, 0])
+
+
+        if traj.size == 0:
+            traj = data0
+        else:
+            traj = np.concatenate((traj, data0), axis=0)
+
+        # constructing train, val and testset for tracks
+        data1 = data[1]
+        for ids in traj_id:
+            track[d][ids] = data1[ids]
+     
+
+        # print("Dataset {} finsihed.".format(d))
+
+
+
+    if not os.path.exists(output_dir.format(dtype)):
+        os.makedirs(output_dir.format(dtype))
+
+    # data for sgan
+    sgan_name = "{}/{}Set{}.txt".format(dtype, dtype, str(threadid))
+    f = open(output_dir.format(sgan_name), 'w')
+    for line in traj:
+        # f.write("{}\t{}\t{}\t{}\n".format(int(line[2]), int(line[1]), line[3], line[4]))
+        f.write("{}\t{}\t{}\t{}\t{}\n".format(int(line[2]), int(line[1]), line[3], line[4], int(line[0])))
+    f.close()
+
+    name = "{}/{}Set{}-traj.npy".format(dtype, dtype, str(threadid))
+    np.save(output_dir.format(name), np.array([traj]))
+    name = "{}/{}Set{}-track.npy".format(dtype, dtype, str(threadid))
+    np.save(output_dir.format(name), np.array([track]))
+    print("{} file in thread {} is saved and ready.".format(dtype, threadid))
+
+    return len(traj)
+
+input_dir = './resources/raw_data/ARGO/train/data/'
+output_dir = './resources/raw_data/ARGO/train/formatted/'
 
 
 
