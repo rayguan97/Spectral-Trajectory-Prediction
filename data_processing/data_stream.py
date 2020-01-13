@@ -12,6 +12,25 @@ DIR = DIR + 'Ours/{}/'.format(DATA, TYPE)
 train = 20
 pred = 30
 BS = 128
+
+
+'''
+The DATA_DIR for data_for_stream1 and data_for_stream2 functions should be as below
+
+DATA_DIR = 'resources/data/ARGO/train/TrainSet.txt'     ## for ARGO train
+DATA_DIR = 'resources/data/ARGO/test/TestSet.txt'       ## for ARGO test
+DATA_DIR = 'resources/data/ARGO/val/ValSet.txt'         ## for ARGO val
+
+DATA_DIR = 'resources/data/APOL/train/trainSet0.txt'    ## for APOL train
+DATA_DIR = 'resources/data/APOL/test/testSet0.txt'      ## for APOL test
+DATA_DIR = 'resources/data/APOL/val/valSet0.txt'        ## for APOL val
+
+DATA_DIR = 'resources/data/LYFT/train/trainSet0.txt'    ## for LYFT train
+DATA_DIR = 'resources/data/LYFT/test/testSet0.txt'      ## for LYFT test
+DATA_DIR = 'resources/data/LYFT/val/valSet0.txt'        ## for LYFT val
+'''
+
+
 def save_to_pkl(dir, file_sequence):
     with open(dir, 'wb') as f:
         pickle.dump(file_sequence, f)
@@ -96,6 +115,7 @@ def data_for_stream1(dir, train_seq_len = train, pred_seq_len = pred, frame_lent
                     pred_sequence.append(pred_sequence_dict)
     print(mx)
     return train_sequence, pred_sequence
+
 
 def data_for_stream2(dir, train_seq_len = train, pred_seq_len = pred, frame_lenth_cap = train+pred):
     '''
