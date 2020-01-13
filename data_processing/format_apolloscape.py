@@ -178,4 +178,15 @@ def apolloscape_to_formatted(dir, dir_test):
     apolloscape_to_formatted_test(dir_test, dir)
 
 
+
+'''
+Instructions for directory structure:
+
+1. Download the dataset from the link provided in the README.md
+2. Unzip the downloaded files and
+3. Follow below format  
+DATA_DIR = folder_where_unzipped_apolloscape_data_is_present + '/sample_trajectory/asdt_sample_ trajectory/'
+DATA_DIR_TEST = folder_where_unzipped_apolloscape_data_is_present + '/prediction_test/'
+'''
+
 apolloscape_to_formatted(DATA_DIR, DATA_DIR_TEST)
