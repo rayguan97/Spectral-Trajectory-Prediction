@@ -74,7 +74,7 @@ As the official implementation of the GRIP method is not available, the code pro
 
 ### Datasets
 * [**Argoverse**](https://www.argoverse.org/data.html)
-* [**Apolloscape**](apolloscape.auto/trajectory.html)
+* [**Apolloscape**](http://apolloscape.auto/trajectory.html)
 * [**Lyft Level 5**](https://level5.lyft.com/dataset/)
 
 
