@@ -167,22 +167,22 @@ if __name__ == '__main__':
 
 	# files = 
 
-	##### --- generate several npy files --- #####
-	bags = np.array_split(files, THREAD)
+# 	##### --- generate several npy files --- #####
+# 	bags = np.array_split(files, THREAD)
 
 
-	pool = multiprocessing.Pool(processes = THREAD)
+# 	pool = multiprocessing.Pool(processes = THREAD)
 
-	cmds = []
+# 	cmds = []
 
-	for i in range(THREAD):
-		cmds.append((input_dir, bags[i], output_dir, DATA_DIR, dtype, i))
+# 	for i in range(THREAD):
+# 		cmds.append((input_dir, bags[i], output_dir, DATA_DIR, dtype, i))
 
-	pool.starmap(multi, cmds)
+# 	pool.starmap(multi, cmds)
 
-	sz = 0
-	for i in range(THREAD):
-		sz += run_merge(output_dir, DATA_DIR, dtype, i)
+# 	sz = 0
+# 	for i in range(THREAD):
+# 		sz += run_merge(output_dir, DATA_DIR, dtype, i)
 
 
 
