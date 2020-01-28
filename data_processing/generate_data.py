@@ -165,7 +165,7 @@ if __name__ == '__main__':
 	# single('./resources/raw_data/APOL', './resources/data/APOL', args.set)
 	# single('./resources/raw_data/LYFT', './resources/data/LYFT', args.set)
 
-	files = 
+	# files = 
 
 	##### --- generate several npy files --- #####
 	bags = np.array_split(files, THREAD)
