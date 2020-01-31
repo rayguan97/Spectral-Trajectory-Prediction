@@ -1,3 +1,5 @@
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/forecasting-trajectory-and-behavior-of-road-1/trajectory-prediction-on-apolloscape)](https://paperswithcode.com/sota/trajectory-prediction-on-apolloscape?p=forecasting-trajectory-and-behavior-of-road-1) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/forecasting-trajectory-and-behavior-of-road-1/trajectory-prediction-on-argoverse)](https://paperswithcode.com/sota/trajectory-prediction-on-argoverse?p=forecasting-trajectory-and-behavior-of-road-1)[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/forecasting-trajectory-and-behavior-of-road-1/trajectory-prediction-on-lyft-level-5)](https://paperswithcode.com/sota/trajectory-prediction-on-lyft-level-5?p=forecasting-trajectory-and-behavior-of-road-1)
+
 ### Paper - [**Forecasting Trajectory and Behavior of Road-Agents Using Spectral Clustering in Graph-LSTMs**](https://obj.umiacs.umd.edu/gamma-umd-website-imgs/pdfs/autonomousdriving/spectralcows_full.pdf)
 
 Project Page - https://gamma.umd.edu/spectralcows
