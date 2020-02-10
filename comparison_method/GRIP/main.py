@@ -4,24 +4,24 @@ from def_train_eval import *
 from data_stream import *
 import pickle              # import module first
 
-DATA = 'LYFT'
+DATA = 'ARGO'
 SUFIX = 'notrain'
-TRAIN = False
+TRAIN = True
 EVAL = True 
 DIR = '../../resources/data/{}/'.format(DATA)
 
-epochs = 0
+epochs = 1
 save_per_epoch = 5
 
 
 train_seq_len = 20
-pred_seq_len = 30
+pred_seq_len = 20
 
 
 if __name__ == "__main__":
 
     if TRAIN:
-        f2 = open ( DIR + 'stream2_obs_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
+        f2 = open ( DIR + 'stream2_obs_data_train.pkl','rb')  # 'r' for reading; can be omitted
         g2 = open ( DIR + 'stream2_pred_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
         tr_seq_2 = pickle.load ( f2 )  # load file content as mydict
         pred_seq_2 = pickle.load ( g2 )  # load file content as mydict

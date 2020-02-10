@@ -15,11 +15,11 @@ from data_stream import *
 from scipy.sparse.linalg import eigs
 from torch.autograd import Variable
 
-device = torch.device("cuda:0")
+device = torch.device("cuda:1")
 # s1 = True
 BATCH_SIZE= 128
 train_seq_len = 20
-pred_seq_len = 30
+pred_seq_len = 20
 FINAL_GRIP_OUTPUT_COORDINATE_SIZE = 256
 FINAL_GRIP_OUTPUT_COORDINATE_SIZE_DECODER = 256
 MODEL_LOC = '../../resources/trained_models/GRIP'
@@ -30,7 +30,7 @@ def load_grip_batch(index, data_raw, batchsize):
     coordinates, n_agents = data_raw[0][keys[2]].shape
     data = torch.zeros((batchsize, coordinates, n_agents, timesteps)).to(device)
     range_batch_start = batchsize*index
-    range_batch_end = batchsize*(index+1)
+    range_batch_end = min(batchsize*(index+1), len(data) - 1)
     for i in range(range_batch_start, range_batch_end):
         keys = list(data_raw[i].keys())
         for t in range(timesteps):
