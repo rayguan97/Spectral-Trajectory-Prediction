@@ -22,7 +22,7 @@ EVAL = True
 DIR = '../resources/data/{}/'.format(DATA)
 MODEL_DIR = '../resources/trained_models/'
 
-epochs = 5
+epochs = 25
 
 save_per_epochs = 5
 

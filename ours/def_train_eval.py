@@ -178,7 +178,7 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
 
     compute_accuracy_stream1(train_dataloader, valid_dataloader, encoder_stream1, decoder_stream1, n_epochs)
     # showPlot(plot_losses)
-    save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2 , data, sufix)
+    save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2 , data, sufix, s2)
     return encoder_stream1, decoder_stream1
 
 def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODEL_LOC):
