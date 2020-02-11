@@ -14,8 +14,8 @@ SUFIX = '1st'
 
 
 device = torch.device("cuda:0")
-s2 = True
-TRAIN = False
+s2 = False
+TRAIN = True
 EVAL = True
 
 
@@ -35,6 +35,7 @@ if __name__ == "__main__":
     if TRAIN:
         f1 = open ( DIR + 'stream1_obs_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
         g1 = open ( DIR + 'stream1_pred_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
+        
 
         tr_seq_1 = pickle.load ( f1 )  # load file content as mydict
         pred_seq_1 = pickle.load ( g1 )  # load file content as mydict

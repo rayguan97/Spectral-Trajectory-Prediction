@@ -73,8 +73,8 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     decoder_stream1 = None
     encoder_stream2 = None
     decoder_stream2 = None
-    encoder1loc = os.path.join(MODEL_LOC.format(data), 'encoder_stream1_{}{}.pt'.format(data, 'single1'))
-    decoder1loc = os.path.join(MODEL_LOC.format(data), 'decoder_stream1_{}{}.pt'.format(data, 'single1'))
+    encoder1loc = os.path.join(MODEL_LOC.format(data), 'encoder_stream1_{}{}.pt'.format(data, 'singles1'))
+    decoder1loc = os.path.join(MODEL_LOC.format(data), 'decoder_stream1_{}{}.pt'.format(data, 'singles1'))
     
     train_raw = train_dataloader
     pred_raw = valid_dataloader
@@ -97,10 +97,10 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
 
-    encoder_stream1.load_state_dict(torch.load(encoder1loc))
-    encoder_stream1.eval()       
-    decoder_stream1.load_state_dict(torch.load(decoder1loc))        
-    decoder_stream1.eval()
+#    encoder_stream1.load_state_dict(torch.load(encoder1loc))
+#    encoder_stream1.eval()       
+#    decoder_stream1.load_state_dict(torch.load(decoder1loc))        
+#    decoder_stream1.eval()
     if s2 is True:
         batch = load_batch ( 0 , BATCH_SIZE , 'pred' , train_raw , pred_raw , train2_raw , pred2_raw, train_eig_raw, pred_eig_raw )
         _ , _, batch = batch
@@ -149,7 +149,7 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
                 loss_stream2, output_stream2_decoder = train_stream2(input_stream2_tensor, target_stream2_tensor, encoder_stream2, decoder_stream2, encoder_stream2_optimizer, decoder_stream2_optimizer)
                 print_loss_total_stream2 += loss_stream2
 
-            loss_stream1 = train_stream1(input_stream1_tensor, target_stream1_tensor, encoder_stream1, decoder_stream1, encoder_stream1_optimizer, decoder_stream1_optimizer, output_stream2_decoder, batch_agent_ids, test_middle)
+            loss_stream1 = train_stream1(input_stream1_tensor, target_stream1_tensor, encoder_stream1, decoder_stream1, encoder_stream1_optimizer, decoder_stream1_optimizer, output_stream2_decoder, batch_agent_ids, test_middle, s2)
             print_loss_total_stream1 += loss_stream1
                 # print(loss_stream1)
 
@@ -174,7 +174,7 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
             #         plot_losses_stream2.append(plot_loss_avg_stream2)
             #         plot_loss_total_stream2 = 0
         if epoch % save_every == 0:
-            save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2, data, sufix)
+            save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2, data, sufix, s2)
 
     compute_accuracy_stream1(train_dataloader, valid_dataloader, encoder_stream1, decoder_stream1, n_epochs)
     # showPlot(plot_losses)
