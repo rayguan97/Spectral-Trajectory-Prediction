@@ -320,9 +320,11 @@ def compute_sample_loss(mu_1, mu_2,log_sigma_1, log_sigma_2, rho, y):
     pi_term = torch.Tensor([2*np.pi]).to(device)
 
     y_1 = y[:,0]
-    y_1 = (y_1-torch.mean(y_1))/y_1.max()
+    #y_1 = (y_1-torch.mean(y_1))/y_1.max()
     y_2 = y[:,1]
-    y_2 = (y_2 - torch.mean(y_2))/y_2.max()
+    #y_2 = (y_2 - torch.mean(y_2))/y_2.max()
+    mu_1 = torch.mean(y_1) + (y_1 -torch.mean(mu_1)) * (torch.std(y_1))/(torch.std(mu_1))
+    mu_2 = torch.mean(y_2) + (y_2 -torch.mean(mu_2)) * (torch.std(y_2))/(torch.std(mu_2))
     z = ( (y_1 - mu_1)**2/(log_sigma_1**2) + ((y_2 - mu_2)**2/(log_sigma_2**2)) - 2*rho*(y_1-mu_1)*(y_2-mu_2)/((log_sigma_1 *log_sigma_2)) )
     mog_lik2 = ( (-1*z)/(2*(1-rho**2)) ).exp()
     mog_lik1 =  1/(pi_term * log_sigma_1 * log_sigma_2 * (1-rho**2).sqrt() )
@@ -469,9 +471,11 @@ def MSE(y_pred, y_gt, device=device):
     muX = y_pred[:,:,0]
     muY = y_pred[:,:,1]
     x = np.array(y_gt[:,:, 0])
-    x = (x-np.mean(x))/x.max()
+    #x = (x-np.mean(x))/x.max()
     y = np.array(y_gt[:,:, 1])
-    y = (y-np.mean(y))/y.max()
+    muX = torch.mean(x) + (x -torch.mean(muX)) * (torch.std(x))/(torch.std(muX))
+    #y = (y-np.mean(y))/y.max()
+    muY = torch.mean(y) + (x -torch.mean(muY)) * (torch.std(y))/(torch.std(muY))
     acc = np.power(x-muX, 2) + np.power(y-muY, 2)
     lossVal = np.sum(acc, axis=0)/len(acc)
     return lossVal
