@@ -245,7 +245,6 @@ def train_stream1(input_tensor, target_tensor, encoder, decoder, encoder_optimiz
 
     encoder_optimizer.step()
     decoder_optimizer.step()
-
     return loss.item() / target_length
 
 def save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2, data, sufix, s2, loc=MODEL_LOC):
@@ -323,8 +322,10 @@ def compute_sample_loss(mu_1, mu_2,log_sigma_1, log_sigma_2, rho, y):
     #y_1 = (y_1-torch.mean(y_1))/y_1.max()
     y_2 = y[:,1]
     #y_2 = (y_2 - torch.mean(y_2))/y_2.max()
-    mu_1 = torch.mean(y_1) + (y_1 -torch.mean(mu_1)) * (torch.std(y_1))/(torch.std(mu_1))
-    mu_2 = torch.mean(y_2) + (y_2 -torch.mean(mu_2)) * (torch.std(y_2))/(torch.std(mu_2))
+    mu_1 = torch.mean(y_1) + (y_1 -torch.mean(mu_1))
+    #mu_1 = torch.mean(y_1) + (y_1 -torch.mean(mu_1)) * (torch.std(y_1))/(torch.std(mu_1))
+    mu_2 = torch.mean(y_2) + (y_2 -torch.mean(mu_2))
+    #mu_2 = torch.mean(y_2) + (y_2 -torch.mean(mu_2)) * (torch.std(y_2))/(torch.std(mu_2))
     z = ( (y_1 - mu_1)**2/(log_sigma_1**2) + ((y_2 - mu_2)**2/(log_sigma_2**2)) - 2*rho*(y_1-mu_1)*(y_2-mu_2)/((log_sigma_1 *log_sigma_2)) )
     mog_lik2 = ( (-1*z)/(2*(1-rho**2)) ).exp()
     mog_lik1 =  1/(pi_term * log_sigma_1 * log_sigma_2 * (1-rho**2).sqrt() )
@@ -473,9 +474,9 @@ def MSE(y_pred, y_gt, device=device):
     x = np.array(y_gt[:,:, 0])
     #x = (x-np.mean(x))/x.max()
     y = np.array(y_gt[:,:, 1])
-    muX = torch.mean(x) + (x -torch.mean(muX)) * (torch.std(x))/(torch.std(muX))
+    muX = np.mean(x) + (x - np.mean(muX)) * (np.std(x))/(np.std(muX))
     #y = (y-np.mean(y))/y.max()
-    muY = torch.mean(y) + (x -torch.mean(muY)) * (torch.std(y))/(torch.std(muY))
+    muY = np.mean(y) + (x -np.mean(muY)) * (np.std(y))/(np.std(muY))
     acc = np.power(x-muX, 2) + np.power(y-muY, 2)
     lossVal = np.sum(acc, axis=0)/len(acc)
     return lossVal
