@@ -62,12 +62,12 @@ class GRIPModel(nn.Module):
         xt = xt.cpu ().detach ().numpy ()
         A = np.zeros ( [ xt.shape[ 0 ] , xt.shape[ 0 ] ] )
         for i in range ( len ( xt ) ):
-            if xt[ i ] is not None:
+            if xt[i][0] and xt[i][1]:
                 neighbors = self.computeKNN ( xt , i , 4 )
-            for neighbor in neighbors:
-                # if neighbor in labels:
-                # if idx < labels.index ( neighbor ):
-                A[ i ][ neighbor ] = 1
+                for neighbor in neighbors:
+                    # if neighbor in labels:
+                    # if idx < labels.index ( neighbor ):
+                    A[ i ][ neighbor ] = 1
         return Variable ( torch.Tensor ( A ).to (device) )
 
     def forward(self, x):
