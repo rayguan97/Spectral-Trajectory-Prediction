@@ -77,6 +77,9 @@ Xin Li, Xiaowen Ying, Mooi Choo Chuah
 
 As the official implementation of the GRIP method is not available, the code provided here is our own effort to replicate the GRIP method to the best of our ability and does not necessarily convey the original implementation of the authors. Please contact the authors directly for the original implementation. 
 
+#### Pull Requests and Contributions
+Additionally, the graph construction part of GRIP may be slow as the code does not exploit optimized data structures and algorithms. If anyone uses the GRIP code and can come up with an optimized way to reduce computational time, please consider creating a pull request and we will acknoledge your contributions here ! :)
+
 ### Datasets
 * [**Argoverse**](https://www.argoverse.org/data.html)
 * [**Apolloscape**](http://apolloscape.auto/trajectory.html)
