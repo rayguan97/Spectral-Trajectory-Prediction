@@ -23,8 +23,8 @@ Please cite our work if you found it useful.
 <img src="figures/behavior.gif" width="260">
 </p>
 
-Since this is a research codebase and maintained by students, do let us know of any bugs you may encounter and we will do our best to resolve them :) A list of active bugs with solutions is regularly maintained and compiled [**here**](https://github.com/rohanchandra30/Spectral-Trajectory-Prediction/wiki/Known-bugs).
-
+Since this is a research codebase and maintained by students, this repo is under active maintenance. Do let us know of any issues you may encounter and we will do our best to resolve them :) A list of known bugs with solutions is regularly maintained and compiled [**here**](https://github.com/rohanchandra30/Spectral-Trajectory-Prediction/wiki/Known-bugs), and optimizations/enhancements to the code
+are compiled [**here**](https://github.com/rohanchandra30/Spectral-Trajectory-and-Behavior-Prediction/wiki/Enhancements).
 ## Instruction
 
 Python version: 3.7
